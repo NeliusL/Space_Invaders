@@ -1,27 +1,26 @@
-1rs level ennemy follows you and you have to avoid him
-	fixed, but can rotate to shoot
-2nd level classic space invaders
-3rd level completely breaks free from the restraints and goes against a boss
+1st level You are stuck and can only use rotation to fire, (no sideways movement, only rotational fire)- Death by reaching bottom of screen(?)	
+2nd level classic space invaders, (sideways movement and rotational fire)- Death by reaching bottom of screen
+3rd level completely breaks free from the restraints and goes against a boss- Death by boss reaching you(?)
 
-Story mode / endless mode
+Story mode / endless mode 
 
 points -> time, score etc...
 
 Start with classic space invaders and endless mode, then story
 
 different characters/ skins with differents themes
-different stats to chosebefore you start => more variety
+different stats to chose before you start => more variety
 
-aim for the demo and then add stuff
+Most Important Step: Aim for the demo and then add stuff
 make it adaptable
 
 coordinates work with percentages to  allow scalability
 
 Make movements fluents
 
-Movements : ennemies, you, projectiles
+Movements : enemies, you, projectiles
 Game management
 UI
 Graphics
-AI? for ennemies
+AI? for enemies
 Boss
