@@ -1,0 +1,16 @@
+Basic Game :
+    Characters movements : Rotation, lateral movement, vertical movements
+    Enemy actions : Based on basic character movements
+    Character action : Shooting
+    Game Management : Collision management, timer, score, (player HP?)
+    UI : Score, Pause button (even if it's not working), start Menu
+
+- Make the movements fluent
+- Decide the window size, if it will be scalable or fixed?
+
+
+Low prio tasks :
+    - Graphics
+    - Level Design for story mode
+    - Different characters with stats design
+    - Powerups, obstacles/barricades
