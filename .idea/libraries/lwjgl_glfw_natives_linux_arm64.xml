@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="lwjgl-glfw-natives-linux-arm64">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/resources/libs/LWJGL/lwjgl-glfw-natives-linux-arm64.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

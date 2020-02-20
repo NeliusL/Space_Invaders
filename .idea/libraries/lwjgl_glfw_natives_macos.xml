@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="lwjgl-glfw-natives-macos">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/resources/libs/LWJGL/lwjgl-glfw-natives-macos.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
