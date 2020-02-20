@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="lwjgl" level="project" />
+    <orderEntry type="library" name="lwjgl-glfw" level="project" />
+    <orderEntry type="library" name="joml-1.9.20" level="project" />
+    <orderEntry type="library" name="lwjgl-assimp" level="project" />
+    <orderEntry type="library" name="lwjgl-assimp-natives-linux" level="project" />
+    <orderEntry type="library" name="lwjgl-assimp-natives-windows" level="project" />
+    <orderEntry type="library" name="lwjgl-bgfx-natives-linux" level="project" />
+    <orderEntry type="library" name="lwjgl-bgfx-natives-windows" level="project" />
+    <orderEntry type="library" name="lwjgl-openal" level="project" />
+    <orderEntry type="library" name="lwjgl-opengl" level="project" />
+    <orderEntry type="library" name="lwjgl-opencl" level="project" />
+    <orderEntry type="library" name="lwjgl-glfw-natives-linux" level="project" />
+    <orderEntry type="library" name="lwjgl-glfw-natives-linux-arm32" level="project" />
+    <orderEntry type="library" name="lwjgl-glfw-natives-linux-arm64" level="project" />
+    <orderEntry type="library" name="lwjgl-glfw-natives-macos" level="project" />
+    <orderEntry type="library" name="lwjgl-glfw-natives-windows" level="project" />
+    <orderEntry type="library" name="lwjgl-glfw-natives-windows-x86" level="project" />
+    <orderEntry type="library" name="lwjgl-openal-natives-linux" level="project" />
+    <orderEntry type="library" name="lwjgl-openal-natives-macos" level="project" />
+    <orderEntry type="library" name="lwjgl-openal-natives-windows" level="project" />
+    <orderEntry type="library" name="lwjgl-openal-natives-windows-x86" level="project" />
+    <orderEntry type="library" name="lwjgl-opengl-natives-linux" level="project" />
+    <orderEntry type="library" name="lwjgl-opengl-natives-macos" level="project" />
+    <orderEntry type="library" name="lwjgl-opengl-natives-windows" level="project" />
+    <orderEntry type="library" name="lwjgl-stb" level="project" />
+    <orderEntry type="library" name="lwjgl-stb-natives-linux" level="project" />
+    <orderEntry type="library" name="lwjgl-stb-natives-windows" level="project" />
+    <orderEntry type="library" name="lwjgl-stb-natives-macos" level="project" />
+    <orderEntry type="library" name="lwjgl-natives-linux" level="project" />
+    <orderEntry type="library" name="lwjgl-natives-macos" level="project" />
+    <orderEntry type="library" name="lwjgl-natives-windows" level="project" />
+  </component>
+</module>
