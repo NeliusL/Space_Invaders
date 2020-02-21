@@ -5,17 +5,25 @@ import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
 
-import static org.lwjgl.glfw.GLFW.glfwPollEvents;
-import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
+import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.opengl.ARBVertexArrayObject.*;
 
 public class Window {
     public static final int DEFAULT_WIDTH = 1280;
     public static final int DEFAULT_HEIGHT = 720;
+    public static final int DEFAULT_FRAME_RATE = 60;
     public static final String TITLE = "Space Invaders, but BETTER";
 
     private static int width = DEFAULT_WIDTH;
     private static int height = DEFAULT_HEIGHT;
+    private static int fps = DEFAULT_FRAME_RATE;
     private static long window;
+
+
+    // Classic getters
+    public static int getWidth() { return width; }
+    public static int getHeight() { return height; }
+    public static long getId() { return window; }
 
     // Open and Init the window
     public static void open(){
@@ -35,23 +43,34 @@ public class Window {
         if (videoMode == null)
             throw new RuntimeException("Failed to initialize the window");
 
-        //GLFW.glfwSetWindowPos(window, videoMode.width()/2, videoMode.height()/2);
+        // Center the window
+        glfwSetWindowPos(window, (videoMode.width() - width) / 2, (videoMode.height() - height) / 2);
+
         GLFW.glfwMakeContextCurrent(window);
-        GL.createCapabilities();    // Creates new GLCapabilities instance to allow the use of OpenGL
+
+        glfwSwapInterval(1);    // vsync
+        GL.createCapabilities();        // Creates new GLCapabilities instance to allow the use of OpenGL
         GL11.glEnable(GL11.GL_DEPTH_TEST);
         GLFW.glfwShowWindow(window);
 
-        GL11.glLoadIdentity();
-        GL11.glOrtho(0, width, height, 0, 1, -1);
+        // Color used to fill the window when cleared
+        GL11.glClearColor(0, 1, 1, 1);
 
         // Maintains the window open but need to find a way to get an event and close the window upon this event
-        while(!glfwWindowShouldClose(window))
+        while(!glfwWindowShouldClose(window)){
+            GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
+            glfwSwapBuffers(window);
             glfwPollEvents();
-
+        }
     }
 
+    // Close window
     public static void close(){
+        glfwDestroyWindow(window);
         GLFW.glfwTerminate();
         // TODO
+
     }
+
+
 }

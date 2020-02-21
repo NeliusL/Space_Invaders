@@ -1,6 +1,8 @@
 package Game;
 
 import Graphics.Window;
+import Graphics.Tools;
+
 
 import java.awt.*;
 

@@ -40,11 +40,15 @@ public class Character {
 
 
     // Update position of the character based on a quaternion (4D vector)
-    public void Update_Pos(){
+    public static void Update_Pos(){
         // TODO
     }
 
-    public void Update_Img(){
+    public static void Update_Img(){
+        //TODO
+    }
+
+    public static void Display(){
         //TODO
     }
 
