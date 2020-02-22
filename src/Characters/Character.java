@@ -1,12 +1,18 @@
 package Characters;
 
-import org.lwjgl.opengl.GLUtil;
 
 public class Character {
+    // Game management
     public static int HitPoints;
     public static double MoveSpeed;
+
     public static boolean CanMove = true;      // Sideways movement
     public static boolean CanRotate = true;    // Rotation
+    public static float posX = 0;
+    public static float posY = 0;
+    public static float width = 0.1f;
+    public static float height = 0.1f;
+
     // public static ##insert image type## Sprite;
 
     public static Character Init(int HP, double MS, String imgpath){
@@ -49,6 +55,10 @@ public class Character {
     }
 
     public static void Display(){
+        //TODO
+    }
+
+    public static void Kill(){
         //TODO
     }
 

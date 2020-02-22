@@ -4,6 +4,9 @@ import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
+import org.newdawn.slick.opengl.TextureLoader;
+
+import java.awt.event.MouseAdapter;
 
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.ARBVertexArrayObject.*;
@@ -17,6 +20,7 @@ public class Window {
     private static int width = DEFAULT_WIDTH;
     private static int height = DEFAULT_HEIGHT;
     private static int fps = DEFAULT_FRAME_RATE;
+    private static TextureLoader textureLoader;
     private static long window;
 
 
@@ -28,7 +32,7 @@ public class Window {
     // Open and Init the window
     public static void open(){
 
-        // Init library
+        // Init GLFW
         if(!GLFW.glfwInit())
             throw new RuntimeException("Failed to initialize GLFW");
 
@@ -50,11 +54,25 @@ public class Window {
 
         glfwSwapInterval(1);    // vsync
         GL.createCapabilities();        // Creates new GLCapabilities instance to allow the use of OpenGL
-        GL11.glEnable(GL11.GL_DEPTH_TEST);
+        GLFW.glfwSetInputMode(window,GLFW_CURSOR, GLFW_CURSOR_NORMAL);  // Hide cursor
+
+        GL11.glEnable(GL11.GL_TEXTURE_2D);  // Texture rendering
+        GL11.glDisable(GL11.GL_DEPTH_TEST); // Depth is not needed since it's 2D
+
+        GL11.glMatrixMode(GL11.GL_PROJECTION);  // Load the camera matrix to draw the image
+        GL11.glLoadIdentity();                  // No idea what it does but needed
+
+        GL11.glOrtho(0, width, height, 0, -1, 1);
+
+        textureLoader = new TextureLoader();
+
+        GLFW.glfwMakeContextCurrent(window);
+
+        // Show the window
         GLFW.glfwShowWindow(window);
 
         // Color used to fill the window when cleared
-        GL11.glClearColor(0, 1, 1, 1);
+        GL11.glClearColor(0, 0, 0, 0);
     }
 
     // Close window
@@ -79,5 +97,7 @@ public class Window {
         }
     }
 
-
+    // Getters
+    public static boolean KeepWindowOpen(){ return !glfwWindowShouldClose(window); }
+    public static long GetWindow(){ return window;}
 }
