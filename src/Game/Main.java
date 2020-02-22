@@ -10,6 +10,7 @@ public class Main {
     public static void main(String[] args) {
         // Just testing the window generation
         Window.open();
+        Window.update();
         Window.close();
 
     }

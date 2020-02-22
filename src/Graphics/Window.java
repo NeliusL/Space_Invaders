@@ -55,21 +55,28 @@ public class Window {
 
         // Color used to fill the window when cleared
         GL11.glClearColor(0, 1, 1, 1);
-
-        // Maintains the window open but need to find a way to get an event and close the window upon this event
-        while(!glfwWindowShouldClose(window)){
-            GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
-            glfwSwapBuffers(window);
-            glfwPollEvents();
-        }
     }
 
     // Close window
     public static void close(){
         glfwDestroyWindow(window);
         GLFW.glfwTerminate();
-        // TODO
+        // TODO (terminate the programme)
 
+    }
+
+    public static void update(){
+        // Maintains the window open, closes when Escape is hit
+        while(!glfwWindowShouldClose(window)){
+
+            GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
+            glfwSwapBuffers(window);
+            //checks for escape key press
+            if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_TRUE) {
+                Window.close();
+            }
+            glfwPollEvents();
+        }
     }
 
 
