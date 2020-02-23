@@ -1,3 +1,11 @@
+
+TODO :
+    - Window Creation
+    - Image import
+    - Movements management
+    - Event management
+
+
 Basic Game :
     Characters movements : Rotation, lateral movement, vertical movements
     Enemy actions : Based on basic character movements
