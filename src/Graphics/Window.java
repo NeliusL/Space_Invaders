@@ -65,7 +65,6 @@ public class Window {
         GL.createCapabilities();        // Creates new GLCapabilities instance to allow the use of OpenGL
         GLFW.glfwSetInputMode(window,GLFW_CURSOR, GLFW_CURSOR_NORMAL);  // Hide cursor
 
-        GL11.glEnable(GL11.GL_TEXTURE_2D);  // Texture rendering
         GL11.glDisable(GL11.GL_DEPTH_TEST); // Depth is not needed since it's 2D
 
         GL11.glMatrixMode(GL11.GL_PROJECTION);  // Load the camera matrix to draw the image

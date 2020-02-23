@@ -4,6 +4,7 @@ import com.sun.source.tree.BreakTree;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.*;
 
+import javax.lang.model.element.UnknownAnnotationValueException;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
@@ -87,6 +88,7 @@ public class MeshLoader {
     public static Mesh GenMesh(float[] vertices, int[] indexes, int dimension){
         int vao = genVAO();
         SaveData(0, dimension, vertices);
+        //SaveData(1,2,UVs);
         bindIndex(indexes);
         GL30.glBindVertexArray(0);      // Unload the VAO
         return new Mesh(vao, indexes.length);
@@ -94,7 +96,7 @@ public class MeshLoader {
 
     // Generates a 2D mesh using the GenMesh function
     public static Mesh Gen2DMesh(float[] vertices, int[] indexes){
-        return GenMesh(vertices, indexes, 2);
+        return GenMesh(vertices,indexes, 2);
     }
 
     // Clear the vaos and vbos lists when terminating the game to clear memory
