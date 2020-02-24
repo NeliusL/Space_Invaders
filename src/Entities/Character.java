@@ -4,24 +4,35 @@ package Entities;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Character{
+
+    protected static List<Projectile> projectiles;
+
+    // game infos / stats
+    protected static boolean CanMove = false;
+    protected static boolean CanTurn = false;
+    protected static boolean CanShoot = false;
     protected int hp;
-    protected float moveSpeed;
-    protected float turnSpeed = 0;
-
-    protected boolean CanMove = false;
-    protected boolean CanTurn = false;
-    protected boolean CanShoot = false;
-
-    protected ArrayList<Image> sprites;
-    protected int nb_sprites;
-    protected int currentsprite;
-    protected float posX;
-    protected float posY;
-    protected float angle;           // in radians
     protected float attackSpeed;     // Attack per second
 
+
+    // Sprites
+    protected ArrayList<Image> sprites;
+    protected int nb_sprites;
+    protected int currentsprite = 0;
+
+    // Position
+    protected static int posX;
+    protected static int posY;
+    protected static int moveSpeed;
+
+    protected int width;
+    protected int height;
+
+    protected static float angle;           // in radians
+    protected static float turnSpeed = 0;
 
 
     /** Sprites Loading, can load multiple sprites to allow animation later on
@@ -48,9 +59,19 @@ public class Character{
 
     }
 
+    public static void Shoot(){ projectiles.add( new Projectile(angle, posX, posY)); }
+
     // Getters
+    // For game management
     public double getHP()    {return this.hp;}
     public float getPosX()   {return this.posX;}
     public float getPosY()   {return this.posY;}
+
+    // For Update and Drawing
+    public Image getImage()  {return this.sprites.get(this.currentsprite);}
+    public List<Projectile> getProjectiles()    {return this.projectiles;}
+
+    // For collision management
+    public Rectangle getBounds() { return new Rectangle(posX, posY, width, height);}
 
 }

@@ -1,9 +1,10 @@
 package Game;
 
-import Graphics.Scene;
+import Graphics.GameScene;
 import Tools.Constants;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Game extends JFrame {
 
@@ -14,9 +15,11 @@ public class Game extends JFrame {
     public Game(){
         setTitle(Constants.WINDOW_NAME);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setContentPane(new Scene(width, height));
+
+        setContentPane(new GameScene(width, height));
         setResizable(false);
         pack();
+
         setLocationRelativeTo(null);
         setVisible(true);
     }
@@ -29,6 +32,11 @@ public class Game extends JFrame {
     // End the Game by killing all Processes and clearing the memory
     public static void Kill(){
 
+    }
+
+    // For Settings puroposes
+    public void changesize(int width, int height) {
+        setPreferredSize(new Dimension(width, height));
     }
 
 

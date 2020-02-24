@@ -10,8 +10,6 @@ public class Main {
 
     public static void Run(){
         new Game();
-        Game.Loop();
-        Game.Kill();
     }
 }
 

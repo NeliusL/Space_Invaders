@@ -1,16 +1,16 @@
 package Tools;
 
+import Game.Game;
 import Tools.Constants;
 
 public class Settings {
 
-    public static void ChangeBinding(int control, int newBinding){
+    public void ChangeBinding(int control, int newBinding){
         Constants.keycodes[control] = newBinding;
     }
 
-    public static void WindowSize(int width, int height){
-        Constants.WINDOW_WIDTH = width;
-        Constants.WINDOW_HEIGHT = height;
+    public void WindowSize(int width, int height){
+
         // Change window size
     }
 

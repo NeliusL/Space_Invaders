@@ -3,23 +3,30 @@ package Entities;
 import Tools.Constants;
 import org.w3c.dom.html.HTMLParagraphElement;
 
+import javax.swing.*;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.List;
+
 import static Tools.Constants.keycodes;
 
 public class Player extends Character{
 
-    static Projectile[] projectiles = new Projectile[] {new Projectile((float)Math.PI/2f, 0, -0.5f)};
 
     public Player(){
         posX =          Constants.PLAYER_STARTING_X;
         posY =          Constants.PLAYER_STARTING_Y;
+        moveSpeed =     Constants.PLAYER_SPEED;
         attackSpeed =   Constants.PLAYER_ATTACK_SPEED;
         angle =         Constants.PLAYER_STARTING_ANGLE;
+        projectiles =   new ArrayList<>();
+
+        LoadSprites(Constants.PLAYER_SPRITE, Constants.NB_PLAYER_SPRITE);
     }
 
 
-    private static float tmp;      // used for calculation purposes
-
-    public void Actions(int key){
+    public static void keyPressed(KeyEvent e) {
+        int key = e.getKeyCode();
         // Cannot use switch because bindings are sadly not constant
         if          (key == keycodes[2] && CanMove)     posX = Math.max(posX - moveSpeed, Constants.GAME_MIN_WIDTH);
         else if     (key == keycodes[3] && CanMove)     posX = Math.min(posX + moveSpeed, Constants.GAME_MAX_WIDTH);
@@ -30,9 +37,6 @@ public class Player extends Character{
 
     }
 
-    public static void Shoot(){
-
-    }
 
     public static void Update(){
     }
