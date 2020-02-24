@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="lwjgl-bgfx-natives-linux">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/resources/libs/LWJGL/lwjgl-bgfx-natives-linux.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

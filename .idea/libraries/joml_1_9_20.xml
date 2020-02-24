@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="joml-1.9.20">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/resources/libs/LWJGL/joml-1.9.20.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

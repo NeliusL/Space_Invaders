@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="lwjgl-assimp-natives-linux">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/resources/libs/LWJGL/lwjgl-assimp-natives-linux.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
