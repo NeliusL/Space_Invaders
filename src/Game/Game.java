@@ -1,14 +1,24 @@
 package Game;
 
-import Graphics.Window;
+import Graphics.Scene;
 import Tools.Constants;
 
-public class Game {
+import javax.swing.*;
 
-    // Init the Game
+public class Game extends JFrame {
+
+    public static int height = Constants.WINDOW_HEIGHT;
+    public static int width = Constants.WINDOW_WIDTH;
+
+    // Init the Game along with the window
     public Game(){
-        new Window(Constants.WINDOW_NAME);
-
+        setTitle(Constants.WINDOW_NAME);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setContentPane(new Scene(width, height));
+        setResizable(false);
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true);
     }
 
     // Game Main Loop
@@ -20,4 +30,6 @@ public class Game {
     public static void Kill(){
 
     }
+
+
 }
