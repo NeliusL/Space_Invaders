@@ -11,7 +11,7 @@ public class Game {
 
     }
 
-    // Game Main Lopp
+    // Game Main Loop
     public static void Loop(){
 
     }
