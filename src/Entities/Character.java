@@ -1,14 +1,16 @@
 package Entities;
 
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Character{
 
-    protected static List<Projectile> projectiles;
+    protected static LinkedList<Projectile> projectiles;
 
     // game infos / stats
     protected static boolean CanMove = false;
@@ -40,9 +42,11 @@ public class Character{
      * @param  nb the number of sprites*/
     public void LoadSprites(String path, int nb){
 
+        this.sprites = new ArrayList<>();
         // Useful values so that we only use one memory space for each
         // Or just facilitate the process
         Image tmp;
+        ImageIcon ii;
         int n = path.length();
         String pathroot = path.substring(0, n-4);
         String end = path.substring(n-4);
@@ -53,23 +57,23 @@ public class Character{
 
         for(int i = 0; i < nb; i++){
             tmppath = pathroot + i +end;
-            tmp = new ImageIcon(tmppath).getImage();
+            ii = new ImageIcon(tmppath);
+            tmp = ii.getImage();
             this.sprites.add(tmp);
         }
-
     }
 
     public static void Shoot(){ projectiles.add( new Projectile(angle, posX, posY)); }
 
     // Getters
     // For game management
-    public double getHP()    {return this.hp;}
-    public float getPosX()   {return this.posX;}
-    public float getPosY()   {return this.posY;}
+    public int getHP()    {return this.hp;}
+    public int getPosX()   {return posX;}
+    public int getPosY()   {return posY;}
 
     // For Update and Drawing
     public Image getImage()  {return this.sprites.get(this.currentsprite);}
-    public List<Projectile> getProjectiles()    {return this.projectiles;}
+    public LinkedList<Projectile> getProjectiles()    {return projectiles;}
 
     // For collision management
     public Rectangle getBounds() { return new Rectangle(posX, posY, width, height);}

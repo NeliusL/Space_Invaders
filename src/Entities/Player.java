@@ -6,6 +6,7 @@ import org.w3c.dom.html.HTMLParagraphElement;
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import static Tools.Constants.keycodes;
@@ -19,7 +20,7 @@ public class Player extends Character{
         moveSpeed =     Constants.PLAYER_SPEED;
         attackSpeed =   Constants.PLAYER_ATTACK_SPEED;
         angle =         Constants.PLAYER_STARTING_ANGLE;
-        projectiles =   new ArrayList<>();
+        projectiles =   new LinkedList<>();
 
         LoadSprites(Constants.PLAYER_SPRITE, Constants.NB_PLAYER_SPRITE);
     }
@@ -35,10 +36,6 @@ public class Player extends Character{
 
         else if     (key == keycodes[6] && CanShoot)    Shoot();
 
-    }
-
-
-    public static void Update(){
     }
 
 

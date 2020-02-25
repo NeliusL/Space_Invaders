@@ -2,6 +2,7 @@ package Graphics;
 
 import Entities.Enemy;
 import Entities.Player;
+import Entities.Projectile;
 
 
 import javax.swing.JPanel;
@@ -11,8 +12,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
+
 
 public class GameScene extends JPanel implements ActionListener {
 
@@ -20,7 +21,7 @@ public class GameScene extends JPanel implements ActionListener {
     public static int height;
 
     private boolean running = false;
-    private static List<Enemy> enemies;
+    private static LinkedList<Enemy> enemies;
     private Player player;
 
     private Thread thread;
@@ -40,14 +41,12 @@ public class GameScene extends JPanel implements ActionListener {
         setFocusable(true);
         requestFocus();
 
-        graphics2D = (Graphics2D) bufferedImage.getGraphics();
-
         InitEntities();
     }
 
     private void InitEntities() {
         player = new Player();
-        enemies = new ArrayList<>();
+        enemies = new LinkedList<>();
         // Enemies generation
     }
 
@@ -59,26 +58,46 @@ public class GameScene extends JPanel implements ActionListener {
         super.paintComponent(g);
         // different drawing functions for different game states
 
-        drawPlayer();
-        drawEnemoes();
-        drawProjectiles();
+        drawPlayer(g);
+        drawEnemies(g);
+        drawProjectiles(g);
 
     }
 
-    private void drawProjectiles() {
-        //TODO
+    /** Draw the projectiles
+     * @param  graphics the graphic context*/
+    private void drawProjectiles(Graphics graphics) {
+        for (Projectile proj: player.getProjectiles()) {
+            // if condition to add for explosion animation
+            graphics.drawImage(proj.getImage(), proj.getPosX(), proj.getPosY(), this);
+        }
+
+        for(Enemy enemy : enemies) {
+            for (Projectile proj : enemy.getProjectiles()) {
+                // if condition to add for explosion animation
+                graphics.drawImage(proj.getImage(), proj.getPosX(), proj.getPosY(), this);
+            }
+        }
     }
 
-    private void drawEnemoes() {
-        //TODO
+    /** Draw the enemies
+     * @param  graphics the graphic context*/
+    private void drawEnemies(Graphics graphics){
+        for(Enemy enemy : enemies){
+            // if condition to add for explosion animation
+            graphics.drawImage(enemy.getImage(), enemy.getPosX(), enemy.getPosY(), this);
+        }
     }
 
-    private void drawPlayer() {
-        //TODO
+    /** Draw the Player
+     * @param  graphics the graphic context*/
+    private void drawPlayer(Graphics graphics) {
+        // if condition to add for explosion animation
+        graphics.drawImage(player.getImage(), player.getPosX(), player.getPosY(), this);
     }
 
-    // Update function called for any action that happen
-    // Thank you very much. I don't have to make a loop
+    /** Update function called automatically whenever an action takes place
+     * @param  e the event*/
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -96,11 +115,27 @@ public class GameScene extends JPanel implements ActionListener {
     }
 
     private void updateEnemies() {
-        //TODO
+        for (Enemy enemy : enemies){
+            enemy.Update();
+        }
     }
 
     private void updateProjectiles() {
-        //TODO
+        for (Projectile proj: player.getProjectiles()) {
+            // if condition to add for explosion animation
+            proj.Update();
+            if (proj.getFrames_until_explosion() == -1)
+                player.getProjectiles().remove(proj);
+        }
+
+        for(Enemy enemy : enemies) {
+            for (Projectile proj : enemy.getProjectiles()) {
+                // if condition to add for explosion animation
+                proj.Update();
+                if (proj.getFrames_until_explosion() == -1)
+                    player.getProjectiles().remove(proj);
+            }
+        }
     }
 
     private void CollisionCheck() {

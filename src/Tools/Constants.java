@@ -1,5 +1,6 @@
 package Tools;
 
+import javax.print.DocFlavor;
 import java.awt.event.KeyEvent;
 
 import static java.awt.event.KeyEvent.*;
@@ -22,10 +23,17 @@ public class Constants {
     public static final float ENEMY_STARTING_ANGLE =    -PI/2f;
 
     // Image importation infos
-    public static final String PLAYER_SPRITE = "resources/sprites/player.png";
-    public static final int NB_PLAYER_SPRITE = 6;
-    public static final String ENEMY_SPRITE = "resources/sprites/player.png";
-    public static final int NB_ENEMY_SPRITE = 6;
+    //Player
+    public static final String  PLAYER_SPRITE =                     "resources/sprites/player.png";
+    public static final int     NB_PLAYER_SPRITE =                  1;
+    // Enemy
+    public static final String  ENEMY_SPRITE =                      "resources/sprites/alien.png";
+    public static final int     NB_ENEMY_SPRITE =                   1;
+    // Projectile
+    public static final String  PROJECTILE_SPRITE =                 "resources/sprites/projectile.png";
+    public static final int     NB_PROJECTILE_SPRITE =              1;
+    public static final String  PROJECTILE_EXPLOSION_SPRITE =       "resources/sprites/projectile_explosion.png";
+    public static final int     NB_PROJECTILE_EXPLOSION_SPRITE=     1;
 
 
     // Game Settings
