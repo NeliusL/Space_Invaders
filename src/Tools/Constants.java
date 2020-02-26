@@ -37,10 +37,10 @@ public class Constants {
 
 
     // Game Settings
-    public static final int GAME_MIN_WIDTH =        -220;
-    public static final int GAME_MAX_WIDTH =         220;
-    public static final int GAME_MIN_HEIGHT =       -3500;
-    public static final int GAME_MAX_HEIGHT =        350;
+    public static final int GAME_MIN_WIDTH =         10;
+    public static final int GAME_MAX_WIDTH =         470;
+    public static final int GAME_MIN_HEIGHT =        710;
+    public static final int GAME_MAX_HEIGHT =        10;
     public static final float MAX_RIGHT_ROTATION =   PI/4f;
     public static final float MAX_LEFT_ROTATION =    PI*0.75f;
     public static final double GAME_FPS =            64.0;
@@ -51,7 +51,7 @@ public class Constants {
     public static final int PROJECTILE_SPEED =          15;         // Pixel per Update
     public static final int PROJECTILE_DAMAGE =         1;
     public static final float PLAYER_ATTACK_SPEED =     2f;          // Attack per seconds
-    public static final int PLAYER_SPEED =              5;
+    public static final int PLAYER_SPEED =              1;
     public static final float ENEMY_ATTACK_SPEED =      0.5f;
     public static final int ENEMY_SPEED =               10;
     public static final int GRAVITY =                   10;

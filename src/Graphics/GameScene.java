@@ -117,7 +117,8 @@ public class GameScene extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        // Player position already updated automatically
+        // Update Player
+        player.Update();
         //updateEnemies();
         //updateProjectiles();
 
@@ -251,6 +252,9 @@ public class GameScene extends JPanel implements ActionListener {
         public void keyPressed(KeyEvent e) {
             player.keyPressed(e);
         }
+
+        @Override
+        public void keyReleased(KeyEvent e) { player.keyReleased(e);}
     }
 
 
