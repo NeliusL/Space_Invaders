@@ -13,7 +13,7 @@ public class Character{
     protected static LinkedList<Projectile> projectiles;
 
     // game infos / stats
-    protected static boolean CanMove = false;
+    protected static boolean CanMove = true;
     protected static boolean CanTurn = false;
     protected static boolean CanShoot = false;
     protected int hp;
@@ -85,7 +85,7 @@ public class Character{
     public int getPosY()   {return posY;}
 
     // For Update and Drawing
-    public Image getImage()  {return this.sprites.get(this.currentsprite);}
+    public Image getImage()  {return this.sprites.get(0);}
     public LinkedList<Projectile> getProjectiles()    {return projectiles;}
 
     // For collision management, defines the hitbox

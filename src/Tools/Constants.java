@@ -17,7 +17,7 @@ public class Constants {
     // Game Initialisation constants
     public static final float PI =                      (float) Math.PI;
     public static final int PLAYER_STARTING_X =         0;
-    public static final int PLAYER_STARTING_Y =         -300;
+    public static final int PLAYER_STARTING_Y =         1;
     public static final float PLAYER_STARTING_ANGLE =   PI / 2f;     // In radians
 
     public static final float ENEMY_STARTING_ANGLE =    -PI/2f;

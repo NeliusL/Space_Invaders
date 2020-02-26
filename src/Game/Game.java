@@ -16,8 +16,8 @@ public class Game extends JFrame {
         setTitle(Constants.WINDOW_NAME);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        setContentPane(new GameScene(width, height));
-        setResizable(false);
+        add(new GameScene(width, height));
+        setResizable(true);
         pack();
 
         setLocationRelativeTo(null);

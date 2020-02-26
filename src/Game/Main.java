@@ -1,6 +1,7 @@
 package Game;
 
 import javax.management.monitor.GaugeMonitorMBean;
+import java.awt.*;
 
 public class Main {
     public static void main(String[] args){
@@ -9,7 +10,10 @@ public class Main {
 
 
     public static void Run(){
-        new Game();
+        EventQueue.invokeLater(() -> {
+            Game game = new Game();
+            game.setVisible(true);
+        });
     }
 }
 

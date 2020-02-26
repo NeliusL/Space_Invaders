@@ -6,7 +6,8 @@ import Entities.Projectile;
 import Tools.Constants;
 
 
-import javax.swing.JPanel;
+import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,6 +21,11 @@ public class GameScene extends JPanel implements ActionListener {
 
     public static int width;
     public static int height;
+
+    private Image back;
+
+    private Timer timer;
+    int DELAY = 15;
 
     private boolean running = false;
     private static LinkedList<Enemy> enemies;
@@ -35,6 +41,8 @@ public class GameScene extends JPanel implements ActionListener {
         height = h;
         running = true;
 
+        back = new ImageIcon("resources/space.jpg").getImage();
+
         addKeyListener(new InputManager());
 
         setBackground(Color.BLACK);
@@ -43,11 +51,14 @@ public class GameScene extends JPanel implements ActionListener {
         requestFocus();
 
         InitEntities();
+
+        timer = new Timer(DELAY, this);
+        timer.start();
     }
 
     private void InitEntities() {
         player = new Player();
-        enemies = new LinkedList<>();
+        //enemies = new LinkedList<>();
         // Enemies generation
     }
 
@@ -60,8 +71,11 @@ public class GameScene extends JPanel implements ActionListener {
         // different drawing functions for different game states
 
         drawPlayer(g);
-        drawEnemies(g);
-        drawProjectiles(g);
+        //drawEnemies(g);
+        //drawProjectile
+
+        Toolkit.getDefaultToolkit().sync();
+
 
     }
 
@@ -94,6 +108,7 @@ public class GameScene extends JPanel implements ActionListener {
      * @param  graphics the graphic context*/
     private void drawPlayer(Graphics graphics) {
         // if condition to add for explosion animation
+        graphics.drawImage(back, 0, 0, this);
         graphics.drawImage(player.getImage(), player.getPosX(), player.getPosY(), this);
     }
 
@@ -103,8 +118,8 @@ public class GameScene extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         // Player position already updated automatically
-        updateEnemies();
-        updateProjectiles();
+        //updateEnemies();
+        //updateProjectiles();
 
         // collision checked during update to avoid calling multiple loops to go through each lists every time
         repaint();
@@ -234,7 +249,7 @@ public class GameScene extends JPanel implements ActionListener {
 
         @Override
         public void keyPressed(KeyEvent e) {
-            Player.keyPressed(e);
+            player.keyPressed(e);
         }
     }
 

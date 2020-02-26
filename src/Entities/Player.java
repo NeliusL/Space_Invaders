@@ -15,13 +15,14 @@ public class Player extends Character{
 
 
     public Player(){
-        posX =          Constants.PLAYER_STARTING_X;
-        posY =          Constants.PLAYER_STARTING_Y;
-        moveSpeed =     Constants.PLAYER_SPEED;
-        attackSpeed =   Constants.PLAYER_ATTACK_SPEED;
-        angle =         Constants.PLAYER_STARTING_ANGLE;
-        projectiles =   new LinkedList<>();
+        this.posX =          Constants.PLAYER_STARTING_X;
+        this.posY =          Constants.PLAYER_STARTING_Y;
+        this.moveSpeed =     Constants.PLAYER_SPEED;
+        this.attackSpeed =   Constants.PLAYER_ATTACK_SPEED;
+        this.angle =         Constants.PLAYER_STARTING_ANGLE;
+        this.projectiles =   new LinkedList<>();
 
+        this.sprites = new ArrayList<>();
         LoadSprites(Constants.PLAYER_SPRITE, Constants.NB_PLAYER_SPRITE);
     }
 
@@ -31,12 +32,16 @@ public class Player extends Character{
     public static void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         // Cannot use switch because bindings are sadly not constant
-        if          (key == keycodes[2] && CanMove)     posX = Math.max(posX - moveSpeed, Constants.GAME_MIN_WIDTH);
-        else if     (key == keycodes[3] && CanMove)     posX = Math.min(posX + moveSpeed, Constants.GAME_MAX_WIDTH);
-        else if     (key == keycodes[4] && CanTurn)     angle = Math.max(angle - turnSpeed, Constants.MAX_RIGHT_ROTATION);
-        else if     (key == keycodes[5] && CanTurn)     angle = Math.min(angle + turnSpeed, Constants.MAX_LEFT_ROTATION);
+        if     (key == keycodes[2] && CanMove)     posX = posX - moveSpeed;
+        if     (key == keycodes[3] && CanMove)     posX = posX + moveSpeed;
+        if     (key == keycodes[4] && CanTurn)     angle = Math.max(angle - turnSpeed, Constants.MAX_RIGHT_ROTATION);
+        if     (key == keycodes[5] && CanTurn)     angle = Math.min(angle + turnSpeed, Constants.MAX_LEFT_ROTATION);
 
         else if     (key == keycodes[6] && CanShoot)    Shoot();
+
+        if     (key == keycodes[0] && CanMove)     posY = posY - moveSpeed;
+        if     (key == keycodes[1] && CanMove)     posY = posY + moveSpeed;
+        if     (key == KeyEvent.VK_Y)              System.out.println("" + posX + ", "+ posY);
 
     }
 
