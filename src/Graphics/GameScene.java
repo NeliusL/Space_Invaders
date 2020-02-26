@@ -3,6 +3,7 @@ package Graphics;
 import Entities.Enemy;
 import Entities.Player;
 import Entities.Projectile;
+import Tools.Constants;
 
 
 import javax.swing.JPanel;
@@ -101,7 +102,7 @@ public class GameScene extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        updatePlayer();
+        // Player position already updated automatically
         updateEnemies();
         updateProjectiles();
 
@@ -110,14 +111,27 @@ public class GameScene extends JPanel implements ActionListener {
         repaint();
     }
 
-    private void updatePlayer() {
-        //TODO
+
+    // Apply when enemies reach end of line
+    private void Reached_End() {
+        for (Enemy enemy : enemies) {
+            enemy.InvertDirection();
+            enemy.MoveDown();
+        }
     }
 
     private void updateEnemies() {
-        for (Enemy enemy : enemies){
-            enemy.Update();
+        Enemy left = getMostLeftEnemy();
+        left.setMostLeft(true);
+
+        Enemy right = getMostRightEnemy();
+        right.setMostRightht(true);
+
+        if ((left.getPosX() <= Constants.GAME_MIN_WIDTH + 5) ||
+                (right.getPosX() >= Constants.GAME_MAX_WIDTH - 5)) {
+            Reached_End();
         }
+
     }
 
     private void updateProjectiles() {
@@ -138,9 +152,42 @@ public class GameScene extends JPanel implements ActionListener {
         }
     }
 
-    private void CollisionCheck() {
-        //TODO
+    private boolean CollisionCheck(Projectile projectile) {
+        Rectangle playerHitbox = player.getBounds();
+        projectile.Kill();
+        player.damage(projectile.getDMG());
     }
+
+    private Enemy getMostLeftEnemy(){
+        Enemy enemy = null;
+        int minX = Constants.GAME_MAX_WIDTH;
+        int tmp;
+        for (Enemy e : enemies){
+            tmp = e.getPosX();
+            if (tmp < minX){
+                minX = tmp;
+                enemy = e;
+            }
+        }
+            return enemy;
+    }
+
+    private Enemy getMostRightEnemy() {
+        Enemy enemy = null;
+        int maxX = Constants.GAME_MIN_WIDTH;
+        int tmp;
+        for (Enemy e : enemies) {
+            tmp = e.getPosX();
+            if (tmp > maxX) {
+                maxX = tmp;
+                enemy = e;
+            }
+        }
+        return enemy;
+    }
+
+    private int getEnemyLeftPos(){ return getMostLeftEnemy().getPosX();}
+    private int getEnemyRightPos(){ return getMostRightEnemy().getPosX();}
 
 
     // Key pressed Management redirected to player Input

@@ -75,7 +75,7 @@ public class Character{
     public Image getImage()  {return this.sprites.get(this.currentsprite);}
     public LinkedList<Projectile> getProjectiles()    {return projectiles;}
 
-    // For collision management
+    // For collision management, defines the hitbox
     public Rectangle getBounds() { return new Rectangle(posX, posY, width, height);}
 
 }
