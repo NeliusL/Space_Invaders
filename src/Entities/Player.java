@@ -26,6 +26,8 @@ public class Player extends Character{
     }
 
 
+
+
     public static void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         // Cannot use switch because bindings are sadly not constant

@@ -61,9 +61,22 @@ public class Character{
             tmp = ii.getImage();
             this.sprites.add(tmp);
         }
+
+        this.width = this.getImage().getWidth(null);
+        this.height = this.getImage().getHeight(null);
     }
 
     public static void Shoot(){ projectiles.add( new Projectile(angle, posX, posY)); }
+
+    public void damage(int dmg){
+        this.hp -= dmg;
+        if (this.hp <= 0 )
+            this.Kill();
+    }
+
+    public void Kill(){
+        // TODO
+    }
 
     // Getters
     // For game management

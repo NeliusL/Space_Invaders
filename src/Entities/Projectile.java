@@ -17,9 +17,13 @@ public class Projectile {
     private float deltaX;
     private float deltaY;
 
+    private int damage;
+
     private float speed;
     private float angle;
 
+    private int width;
+    private int height;
     private boolean live;
     private int frames_until_explosion;
 
@@ -43,12 +47,18 @@ public class Projectile {
         this.angle = angle;
         this.deltaX = CalculateDeltaX();
         this.deltaY = CalculateDeltaY();
+
+        this.damage = Constants.PROJECTILE_DAMAGE;
+
         this.live = true;
         this.frames_until_explosion = Constants.NB_PROJECTILE_EXPLOSION_SPRITE;
 
         // Graphpics
         this.currentsprite =  Constants.NB_PROJECTILE_SPRITE;
         LoadSprites(Constants.PROJECTILE_SPRITE,this.nb_sprites);
+        this.width = getImage().getWidth(null);
+        this.height = getImage().getHeight(null);
+
     }
 
     /** Sprites Loading, can load multiple sprites to allow animation later on
@@ -107,7 +117,13 @@ public class Projectile {
     public Image getImage()             {return this.sprites.get(this.currentsprite);}
     public int getFrames_until_explosion() {return frames_until_explosion;}
 
+    public int getDMG()                 {return this.damage;}
+    protected void setDMG(int dmg)      {this.damage = dmg;}
+
     private float CalculateDeltaX()     {return (float) Math.cos(this.angle) / this.speed;}
     private float CalculateDeltaY()     {return (float) Math.sin(this.angle) / this.speed;}
+
+    public Rectangle getBounds() { return new Rectangle(posX, posY, width, height);}
+
 
 }

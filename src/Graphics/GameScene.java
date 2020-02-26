@@ -106,8 +106,7 @@ public class GameScene extends JPanel implements ActionListener {
         updateEnemies();
         updateProjectiles();
 
-        CollisionCheck();
-
+        // collision checked during update to avoid calling multiple loops to go through each lists every time
         repaint();
     }
 
@@ -132,30 +131,70 @@ public class GameScene extends JPanel implements ActionListener {
             Reached_End();
         }
 
+        // Actually move the enemies
+        for (Enemy e : enemies){
+            e.MoveSideways();
+            PlayerCollision(e);     // Check Collision
+        }
     }
 
     private void updateProjectiles() {
         for (Projectile proj: player.getProjectiles()) {
             // if condition to add for explosion animation
             proj.Update();
-            if (proj.getFrames_until_explosion() == -1)
+            if (proj.getFrames_until_explosion() == -1){
                 player.getProjectiles().remove(proj);
+                ProjectileCollisionCheck(proj);
+            }
         }
 
         for(Enemy enemy : enemies) {
             for (Projectile proj : enemy.getProjectiles()) {
                 // if condition to add for explosion animation
                 proj.Update();
-                if (proj.getFrames_until_explosion() == -1)
+                if (proj.getFrames_until_explosion() == -1){
                     player.getProjectiles().remove(proj);
+                    ProjectileCollisionCheck(proj);
+                }
             }
         }
     }
 
-    private boolean CollisionCheck(Projectile projectile) {
+    /**
+     * Chack Collision between enemy projetile and player
+     * @param projectile the projectile we re checking
+     */
+    private void ProjectileCollisionCheck(Projectile projectile) {
         Rectangle playerHitbox = player.getBounds();
-        projectile.Kill();
-        player.damage(projectile.getDMG());
+        if (playerHitbox.intersects(projectile.getBounds())){
+            projectile.Kill();
+            player.damage(projectile.getDMG());
+        }
+    }
+
+    /**
+     * collision check between player and enemies
+     * @param e the enemy with which we're checking
+     */
+    private void PlayerCollision(Enemy e){
+        Rectangle playerHitbox = player.getBounds();
+        if (playerHitbox.intersects(e.getBounds()))
+            player.damage(Constants.CONTACT_DAMAGE);
+    }
+
+    /**
+     * Checking if the player projectiles hit the enemies
+     * Call this function in the player update loop to get the projectiles tht he's shooting
+     * @param p the projectile we're checking
+     */
+    private void AlienCollision(Projectile p){
+        Rectangle projectileHitBox = p.getBounds();
+        for (Enemy e : enemies){
+            if (projectileHitBox.intersects(e.getBounds())){
+                p.Kill();
+                e.damage(p.getDMG());
+            }
+        }
     }
 
     private Enemy getMostLeftEnemy(){
