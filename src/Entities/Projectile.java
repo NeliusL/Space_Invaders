@@ -2,30 +2,11 @@ package Entities;
 
 import Tools.Constants;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.xml.transform.Source;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Projectile {
-    private static int shooter;    // 1 = Player, 2 = Enemy
-
-    // Game Data
-    private int posX;
-    private int posY;
-    private float deltaX;
-    private float deltaY;
-
-    private int damage;
-
-    private float speed;
-    private float angle;
-
-    private int width;
-    private int height;
-    private boolean live;
-    private int frames_until_explosion;
+public class Projectile extends Entity {
 
 
     // Sprites
@@ -36,28 +17,42 @@ public class Projectile {
 
     // Constructor
     /** Projectile Constructor
-     * @param  angle the angle at which it is shot
+     * @param  pangle the angle at which it is shot
      * @param  x the x coordinate from where it is shot
-     * @param   y the y coordinate from where it is shot*/
-    public Projectile (float angle, int x, int y){
+     * @param  y the y coordinate from where it is shot*/
+    public Projectile (float pangle, int x, int y, Team pteam){
+        projectiles = null;
+        CanMoveHorizontally = true;
+        CanMoveVertically = true;
+        CanTurn = false;
         // Game Data
-        this.speed = Constants.PROJECTILE_SPEED;
-        this.posX = x;
-        this.posY = y;
-        this.angle = angle;
-        this.deltaX = CalculateDeltaX();
-        this.deltaY = CalculateDeltaY();
+        team = pteam;
 
-        this.damage = Constants.PROJECTILE_DAMAGE;
+        live = true;
+        framesTillDeath = Constants.NB_PROJECTILE_EXPLOSION_SPRITE;
 
-        this.live = true;
-        this.frames_until_explosion = Constants.NB_PROJECTILE_EXPLOSION_SPRITE;
+        hp = 1;
+        attackSpeed = 0;
+        onContactDMG = Constants.PROJECTILE_DAMAGE;
+        shootDMG = 0;
+
+        // Position and orientation
+        posX = x;
+        posY = y;
+        moveSpeed = Constants.PROJECTILE_SPEED;
+
+        angle = pangle;
+        deltaX = (int) CalculateDeltaX();
+        deltaY = (int) CalculateDeltaY();
+        deltaTheta = 0;
+
 
         // Graphpics
-        this.currentsprite =  Constants.NB_PROJECTILE_SPRITE;
+        nb_sprites =  Constants.NB_PROJECTILE_SPRITE;
         LoadSprites(Constants.PROJECTILE_SPRITE,this.nb_sprites);
-        this.width = getImage().getWidth(null);
-        this.height = getImage().getHeight(null);
+
+        width = getImage().getWidth(null);
+        height = getImage().getHeight(null);
 
     }
 
@@ -88,16 +83,16 @@ public class Projectile {
     }
 
     public void Update(){
-        this.posX += this.deltaX;
-        this.posY += this.deltaY;
+        posX += this.deltaX;
+        posY += this.deltaY;
 
         if (!this.live)
-            frames_until_explosion -= 1;
+            framesTillDeath -= 1;
 
-        else if ((     this.posX > Constants.GAME_MAX_WIDTH) ||
-                ( this.posX < Constants.GAME_MIN_WIDTH) ||
-                ( this.posY > Constants.GAME_MAX_HEIGHT) ||
-                ( this.posY < Constants.GAME_MIN_HEIGHT) ){
+        else if ((     posX >= Constants.GAME_MAX_WIDTH) ||
+                ( posX <= Constants.GAME_MIN_WIDTH) ||
+                ( posY >= Constants.GAME_MAX_HEIGHT) ||
+                ( posY <= Constants.GAME_MIN_HEIGHT) ){
             this.Kill();
         }
 
@@ -112,16 +107,16 @@ public class Projectile {
     }
 
 
-    public int getPosX()                {return this.posX;}
-    public int getPosY()                {return this.posY;}
+    public int getPosX()                {return posX;}
+    public int getPosY()                {return posY;}
     public Image getImage()             {return this.sprites.get(this.currentsprite);}
-    public int getFrames_until_explosion() {return frames_until_explosion;}
+    public int getFrames_until_explosion() {return framesTillDeath;}
 
-    public int getDMG()                 {return this.damage;}
-    protected void setDMG(int dmg)      {this.damage = dmg;}
+    public int getDMG()                 {return this.onContactDMG;}
+    protected void setDMG(int dmg)      {this.onContactDMG = dmg;}
 
-    private float CalculateDeltaX()     {return (float) Math.cos(this.angle) / this.speed;}
-    private float CalculateDeltaY()     {return (float) Math.sin(this.angle) / this.speed;}
+    private float CalculateDeltaX()     {return (float) Math.cos(angle) / moveSpeed;}
+    private float CalculateDeltaY()     {return (float) Math.sin(angle) / moveSpeed;}
 
     public Rectangle getBounds() { return new Rectangle(posX, posY, width, height);}
 

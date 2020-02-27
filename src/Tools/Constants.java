@@ -26,6 +26,8 @@ public class Constants {
     //Player
     public static final String  PLAYER_SPRITE =                     "resources/sprites/player.png";
     public static final int     NB_PLAYER_SPRITE =                  1;
+    public static final String  PLAYER_DEATH_SPRITE =               "resources/sprites/player.png";
+    public static final int     NB_PLAYER_DEATH_SPRITE =            1;
     // Enemy
     public static final String  ENEMY_SPRITE =                      "resources/sprites/alien.png";
     public static final int     NB_ENEMY_SPRITE =                   1;
@@ -48,8 +50,10 @@ public class Constants {
     public static final int MUBR =                   3; // Must Update before render
 
     // Game Balancing
+    public static final int PLAYER_HP =                 3;
+    public static final int PLAYER_DMG =                1;
     public static final int PROJECTILE_SPEED =          15;         // Pixel per Update
-    public static final int PROJECTILE_DAMAGE =         1;
+    public static final int ALIEN_DAMAGE =         1;
     public static final float PLAYER_ATTACK_SPEED =     2f;          // Attack per seconds
     public static final int PLAYER_SPEED =              1;
     public static final float ENEMY_ATTACK_SPEED =      0.5f;

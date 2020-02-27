@@ -1,44 +1,51 @@
 package Entities;
 
 import Tools.Constants;
-import com.sun.jdi.connect.spi.TransportService;
-import org.w3c.dom.html.HTMLParagraphElement;
 
-import javax.swing.*;
+
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 
+
+import static Entities.Character.CanMove;
 import static Tools.Constants.keycodes;
 
-public class Player extends Character{
+public class Player extends Entity{
 
     private static boolean leftPressed;
     private static boolean rightPressed;
-    private static int deltaX;
-    private static int deltaY;
-    private static float deltaangle;
-    private static boolean CanUpNDown;
 
     public Player(){
-        this.posX =          Constants.PLAYER_STARTING_X;
-        this.posY =          Constants.PLAYER_STARTING_Y;
-        this.moveSpeed =     Constants.PLAYER_SPEED;
-        this.attackSpeed =   Constants.PLAYER_ATTACK_SPEED;
-        this.angle =         Constants.PLAYER_STARTING_ANGLE;
-        this.projectiles =   new LinkedList<>();
+        projectiles = new LinkedList<>();
 
-        this.sprites = new ArrayList<>();
+        CanMoveHorizontally = true;
+        CanMoveVertically = true;
+        CanShoot = true;
+
+        team = Team.PLAYER;
+        live = true;
+        framesTillDeath = Constants.NB_PLAYER_DEATH_SPRITE;
+
+        hp = Constants.PLAYER_HP;
+        attackSpeed =   Constants.PLAYER_ATTACK_SPEED;
+        onContactDMG = 0;
+        shootDMG = Constants.PLAYER_DMG
+
+        posX =          Constants.PLAYER_STARTING_X;
+        posY =          Constants.PLAYER_STARTING_Y;
+        moveSpeed =     Constants.PLAYER_SPEED;
+        angle =         Constants.PLAYER_STARTING_ANGLE;
+        projectiles =   new LinkedList<>();
+
+        sprites = new ArrayList<>();
         LoadSprites(Constants.PLAYER_SPRITE, Constants.NB_PLAYER_SPRITE);
-
-        CanUpNDown = true;
     }
 
     public void Update() {
         posX = Math.max(Math.min(posX + deltaX, Constants.GAME_MAX_WIDTH), Constants.GAME_MIN_WIDTH) ;
         posY = Math.min(Math.max(posY + deltaY, Constants.GAME_MAX_HEIGHT), Constants.GAME_MIN_HEIGHT);
-        angle = Math.max(Math.min(angle + deltaangle, Constants.MAX_LEFT_ROTATION), Constants.MAX_RIGHT_ROTATION);
+        angle = Math.max(Math.min(angle + deltaTheta, Constants.MAX_LEFT_ROTATION), Constants.MAX_RIGHT_ROTATION);
     }
 
 
@@ -48,13 +55,13 @@ public class Player extends Character{
         // Cannot use switch because bindings are sadly not constant
         if     (key == keycodes[2] && CanMove)     {deltaX = -moveSpeed;    leftPressed = true;}
         if     (key == keycodes[3] && CanMove)     {deltaX =  moveSpeed;     rightPressed = true;}
-        if     (key == keycodes[4] && CanTurn)     deltaangle = -turnSpeed;
-        if     (key == keycodes[5] && CanTurn)     deltaangle = turnSpeed;
+        if     (key == keycodes[4] && CanTurn)     deltaTheta = -turnSpeed;
+        if     (key == keycodes[5] && CanTurn)     deltaTheta = turnSpeed;
 
         else if     (key == keycodes[6] && CanShoot)    Shoot();
 
-        if     (key == keycodes[0] && CanUpNDown)     deltaY = -moveSpeed;
-        if     (key == keycodes[1] && CanUpNDown)     deltaY =  moveSpeed;
+        if     (key == keycodes[0] && CanMoveVertically)     deltaY = -moveSpeed;
+        if     (key == keycodes[1] && CanMoveVertically)     deltaY =  moveSpeed;
         //if     (key == KeyEvent.VK_Y)              System.out.println("" + posX + ", "+ posY);
     }
 
@@ -71,11 +78,11 @@ public class Player extends Character{
             if (!leftPressed)
                 deltaX = 0;
         }
-        if     (key == keycodes[4] && CanTurn)     deltaangle = 0;
-        if     (key == keycodes[5] && CanTurn)     deltaangle = 0;
+        if     (key == keycodes[4] && CanTurn)     deltaTheta = 0;
+        if     (key == keycodes[5] && CanTurn)     deltaTheta = 0;
 
-        if     (key == keycodes[0] && CanUpNDown)     deltaY =  0;
-        if     (key == keycodes[1] && CanUpNDown)     deltaY =  0;
+        if     (key == keycodes[0] && CanMoveVertically)     deltaY =  0;
+        if     (key == keycodes[1] && CanMoveVertically)     deltaY =  0;
         //if     (key == KeyEvent.VK_Y)              System.out.println("" + posX + ", "+ posY);
     }
 

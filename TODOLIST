@@ -1,9 +1,11 @@
 
 TODO :
-    - Window Creation
-    - Image import
-    - Movements management
-    - Event management
+    - Projectile Management
+    - Structure revamp
+    - Make Projectile Manager so that they when the enemy that shot die the projectiledoesn't disappear? TO DISCUSS
+    - Enemies Generation
+    - Bonus Generation
+
 
 
 Basic Game :

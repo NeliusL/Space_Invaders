@@ -1,40 +1,55 @@
 package Entities;
 
-
-
 import javax.swing.*;
 import java.awt.*;
+import java.time.temporal.TemporalAmount;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+public class Entity {
 
-public class Character{
+    // Used to identify which side an entity belongs to
+    public enum Team {
+        PLAYER,
+        ENEMIES
+    };
 
+    // In game related stats / date
     protected static LinkedList<Projectile> projectiles;
 
-    // game infos / stats
-    protected static boolean CanMove = true;
+    protected static boolean CanMoveHorizontally;
+    protected static boolean CanMoveVertically;
     protected static boolean CanTurn = false;
     protected static boolean CanShoot = false;
+    protected static Team team;
+    protected boolean live;
+    protected int framesTillDeath;
+
     protected int hp;
-    protected float attackSpeed;     // Attack per second
+    protected float attackSpeed;
+    protected int onContactDMG;
+    protected int shootDMG;
 
-
-    // Sprites
-    protected ArrayList<Image> sprites;
-    protected int nb_sprites;
-    protected int currentsprite = 0;
-
-    // Position
+    // Position and orientation
     protected static int posX;
     protected static int posY;
     protected static int moveSpeed;
 
+    protected static int deltaX;
+    protected static int deltaY;
+
+    protected static float angle;           // in radians
+    protected static float turnSpeed;
+    protected static float deltaTheta;
+
+    // Graphics data
+    protected ArrayList<Image> sprites;
+    protected int nb_sprites;
+    protected int currentsprite = 0;
+
     protected int width;
     protected int height;
 
-    protected static float angle;           // in radians
-    protected static float turnSpeed = 0;
 
 
     /** Sprites Loading, can load multiple sprites to allow animation later on
@@ -66,7 +81,7 @@ public class Character{
         this.height = this.getImage().getHeight(null);
     }
 
-    public static void Shoot(){ projectiles.add( new Projectile(angle, posX, posY)); }
+    public static void Shoot(){ projectiles.add( new Projectile(angle, posX, posY, team)); }
 
     public void damage(int dmg){
         this.hp -= dmg;
@@ -75,7 +90,6 @@ public class Character{
     }
 
     public void Kill(){
-        // TODO
     }
 
     // Getters
@@ -92,3 +106,4 @@ public class Character{
     public Rectangle getBounds() { return new Rectangle(posX, posY, width, height);}
 
 }
+

@@ -6,7 +6,6 @@ import Entities.Projectile;
 import Tools.Constants;
 
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -30,10 +29,6 @@ public class GameScene extends JPanel implements ActionListener {
     private boolean running = false;
     private static LinkedList<Enemy> enemies;
     private Player player;
-
-    private Thread thread;
-    private BufferedImage bufferedImage;
-    private Graphics2D  graphics2D;
 
     // Init the game Scene
     public GameScene(int w, int h){
